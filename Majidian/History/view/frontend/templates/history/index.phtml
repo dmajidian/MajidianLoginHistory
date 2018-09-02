@@ -1,0 +1,70 @@
+<?php $history = $block->getCollection() ?>
+<style type="text/css">
+    .data-grid {
+        border: 1px solid #ccc;
+    }
+    .data-grid td{
+        border: 1px solid #ccc;
+    }
+    .data-grid th{
+        border: 1px solid #ccc;
+    }
+    .data-grid th {
+        white-space: nowrap;
+    }
+</style>
+<div class="majidian-history-history-index" data-mage-init='{"majidianhistory":{}}'>
+    <div class="toolbar top">
+        <?php echo $block->getPagerHtml(); ?>
+    </div>
+
+    <form method="post" id="form-validate" action="<?php echo $block->getUrl('majidian_history/history/delete') ?>">
+        <?php echo $block->getBlockHtml('formkey') ?>
+
+        <?php if ($history): ?>
+            <table class="data-grid">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="checkall" /></th>
+                    <th><?php echo __('ID') ?></th>
+                    <th><?php echo __('IP Address') ?></th>
+                    <th><?php echo __('User Agent') ?></th>
+                    <th><?php echo __('Datetime') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($history as $his): ?>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <input
+                                        id="checkoption_<?php echo $his->getId() ?>"
+                                        class="checkoption"
+                                        type="checkbox"
+                                        name="id[]"
+                                        value="<?php echo $his->getId() ?>" />
+                            </div>
+                        </td>
+                        <td><?php echo $his->getId() ?></td>
+                        <td><?php echo $his->getIpAddress() ?></td>
+                        <td><?php echo $his->getUserAgent() ?></td>
+                        <td><?php echo $his->getCreatedAt() ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action save primary">
+                        <span><?php echo __('Delete') ?></span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+    </form>
+    <div class="toolbar-bottom">
+        <div class="toolbar bottom">
+            <?php echo $block->getPagerHtml(); ?>
+        </div>
+    </div>
+</div>
