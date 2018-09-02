@@ -13,7 +13,7 @@
         white-space: nowrap;
     }
 </style>
-<div class="majidian-history-history-index" data-mage-init='{"majidianhistory":{}}'>
+<div class="majidian-history-history-index" <!--data-mage-init='{"majidianhistory":{}}'-->>
     <div class="toolbar top">
         <?php echo $block->getPagerHtml(); ?>
     </div>
@@ -27,9 +27,9 @@
                 <tr>
                     <th><input type="checkbox" id="checkall" /></th>
                     <th><?php echo __('ID') ?></th>
-                    <th><?php echo __('IP Address') ?></th>
-                    <th><?php echo __('User Agent') ?></th>
-                    <th><?php echo __('Datetime') ?></th>
+                    <th onclick="window.location='<?php echo $block->getUrl('majidian_history/history/index'); ?>?col=ip_address&dir=<?php echo (isset($_GET['dir']) && $_GET['dir'] == 'asc') ? 'desc' : 'asc'; ?>'"><?php echo __('IP Address') ?></th>
+                    <th onclick="window.location='<?php echo $block->getUrl('majidian_history/history/index'); ?>?col=user_agent&dir=<?php echo (isset($_GET['dir']) && $_GET['dir'] == 'asc') ? 'desc' : 'asc'; ?>'"><?php echo __('User Agent') ?></th>
+                    <th onclick="window.location='<?php echo $block->getUrl('majidian_history/history/index'); ?>?col=created_at&dir=<?php echo (isset($_GET['dir']) && $_GET['dir'] == 'asc') ? 'desc' : 'asc'; ?>'"><?php echo __('Datetime') ?></th>
                 </tr>
                 </thead>
                 <tbody>
