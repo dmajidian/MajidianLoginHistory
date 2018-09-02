@@ -20,10 +20,14 @@ class Index extends \Magento\Framework\View\Element\Template
         $this->historyFactory = $historyFactory;
         parent::__construct($context);
 
+        $col = isset($_GET['col']) ? $_GET['col'] : 'history_id';
+        $dir = isset($_GET['dir']) ? $_GET['dir'] : 'asc';
+
         $collection = $this->historyFactory
             ->create()
             ->getCollection()
-            ->addFieldToFilter('customer_id', $this->customerSession->getCustomerId());
+            ->addFieldToFilter('customer_id', $this->customerSession->getCustomerId())
+            ->setOrder($col,$dir);
         $this->setCollection($collection);
     }
 
@@ -35,9 +39,11 @@ class Index extends \Magento\Framework\View\Element\Template
             'Magento\Theme\Block\Html\Pager',
             'majidian.history.list.pager'
         );
+        $limit = (isset($_GET['limit']) && $_GET['limit'] > 0) ? $_GET['limit'] : 10;
+
         $pager
-            ->setShowPerPage(false)
-            ->setLimit(10)
+            ->setShowPerPage(true)
+            ->setLimit($limit)
             ->setCollection($this->getCollection());
         $this->setChild('pager', $pager);
 
