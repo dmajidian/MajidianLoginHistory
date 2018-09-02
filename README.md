@@ -1,2 +1,2 @@
 # MajidianLoginHistory
-Show login history on  Customer Dashboard with Pagination, CRUD &amp; Sorting
+Magento 2 Module. Shows login history on  Customer Dashboard (frontend) with Pagination, CRUD &amp; Sorting
